@@ -36,7 +36,7 @@ class App extends React.Component {
       <div className="App">
         <h1>People!</h1>
         <AddPerson updatePeople={this.updatePeople} />
-        <PeopleList people={this.state.people} />
+        <PeopleList people={this.state.people} updatePeople={this.updatePeople} />
       </div>
     );
   }
