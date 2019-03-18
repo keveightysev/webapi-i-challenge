@@ -30,6 +30,21 @@ server.get('/api/users/:id', (req, res) => {
         });
 })
 
+server.post('/api/users', (req, res) => {
+    const userInfo = req.body;
+    db.insert(userInfo)
+        .then(user => {
+            if (userInfo.name && userInfo.bio) {
+                res.status(201).json(user)
+            } else {
+                res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: "There was an error while saving the user to the database" })
+        })
+})
+
 server.listen(4000, () => {
     console.log('\n*** Server listening on port 4000 ***')
 });
